@@ -1,9 +1,14 @@
 import { Request, Response } from "express";
 import { lineClient } from "..";
 import { Client } from "./client";
-import { chat, generateText, getImageBinary, readImage, showLoadingAnimation } from "./gemini";
+import {
+  chat,
+  generateText,
+  getImageBinary,
+  readImage,
+  showLoadingAnimation,
+} from "./gemini";
 import dotenv from "dotenv";
-import axios from "axios";
 dotenv.config();
 export const handleWebhook = async (req: Request, res: Response) => {
   const events = req.body.events;

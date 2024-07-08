@@ -1,5 +1,6 @@
 import { GenerationConfig, GoogleGenerativeAI } from "@google/generative-ai";
 import axios from "axios";
+import { readFileSync } from "fs";
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -66,10 +67,12 @@ export const chat = async (prompt: string) => {
 };
 
 export const chatWithOwnData = async (prompt: string) => {
-  const response = fetch("https://api.example.com/data").then((res) =>
-    res.json()
-  );
-  let information = await response;
+  // const response = fetch("https://api.example.com/data").then((res) =>
+  //   res.json()
+  // );
+
+  // let information = await response;
+  let information = JSON.parse(readFileSync("data.json", "utf8"));
   information = JSON.stringify(information);
 
   const chat = baseModel.startChat({
@@ -83,7 +86,7 @@ export const chatWithOwnData = async (prompt: string) => {
         parts: [
           {
             text:
-              "Answer the question using the text below. Respond with only the text provided. If you cannot answer, you must answer ขออภัยครับ ไม่พบข้อมูลดังกล่าว \nQuestion: " +
+              "Answer the question using the text below. If you cannot answer, you must answer ขออภัยค่ะ ไม่พบข้อมูลดังกล่าว \nQuestion: " +
               prompt +
               "\nText: " +
               information,

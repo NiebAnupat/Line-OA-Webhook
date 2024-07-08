@@ -10,7 +10,7 @@
   },
   "include": [
     "index.ts",
-    "src/**/*.ts"
+    "src/**/*.{ts,js,json}"
   ],
   "exclude": [
     "node_modules"

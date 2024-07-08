@@ -8,11 +8,14 @@ import express, {
 import * as line from "@line/bot-sdk";
 import dotenv from "dotenv";
 import { handleWebhook } from "./src/handleWebhook";
+import { handleDialogflowFulfillmentWebhook } from "./src/dialogflow";
 
 //For env File
 dotenv.config();
 
 const app: Application = express();
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 const port = process.env.PORT || 8000;
 
 const lineConfig: line.MiddlewareConfig = {
@@ -25,6 +28,16 @@ export const lineClient = new MessagingApiClient({
   channelAccessToken: process.env.LINE_CHANNEL_ACCESS_TOKEN || "",
 });
 
+app.use((req: Request, res: Response, next: NextFunction) => {
+  const time = new Date().toISOString();
+  console.log(`${req.method} ${req.url} | ${time}`);
+  // console.log({ req });
+  // console.log(`Headers: ${JSON.stringify(req.headers)}`);
+  console.log(`Body:`);
+  console.log(req.body);
+  next();
+});
+
 app.get("/", (req: Request, res: Response) => {
   res.status(405).send("Method Not Allowed");
   res.end();
@@ -33,6 +46,7 @@ app.get("/", (req: Request, res: Response) => {
 // app.use(line.middleware(lineConfig));
 
 app.post("/webhook", line.middleware(lineConfig), handleWebhook);
+app.post("/DialogflowFulfillment", handleDialogflowFulfillmentWebhook);
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   if (err instanceof line.SignatureValidationFailed) {
