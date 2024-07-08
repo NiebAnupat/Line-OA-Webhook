@@ -9,6 +9,7 @@ import * as line from "@line/bot-sdk";
 import dotenv from "dotenv";
 import { handleWebhook } from "./src/handleWebhook";
 import { handleDialogflowFulfillmentWebhook } from "./src/dialogflow";
+import { caching, MemoryCache } from "cache-manager";
 
 //For env File
 dotenv.config();
@@ -17,6 +18,8 @@ const app: Application = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 const port = process.env.PORT || 8000;
+
+export let memoryCache: MemoryCache;
 
 const lineConfig: line.MiddlewareConfig = {
   channelAccessToken: process.env.LINE_CHANNEL_ACCESS_TOKEN || "",
@@ -59,6 +62,7 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   next(err); // will throw default 500
 });
 
-app.listen(port, () => {
+app.listen(port, async () => {
+  memoryCache = await caching("memory", { ttl: 1000 * 60, max: 100 });
   console.log(`Server is Fire at http://localhost:${port} ⚡`);
 });

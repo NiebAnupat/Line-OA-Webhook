@@ -1,4 +1,4 @@
-import { GenerationConfig, GoogleGenerativeAI } from "@google/generative-ai";
+import { Content, GenerationConfig, GoogleGenerativeAI } from "@google/generative-ai";
 import axios from "axios";
 import { readFileSync } from "fs";
 import dotenv from "dotenv";
@@ -66,7 +66,7 @@ export const chat = async (prompt: string) => {
   return result.response.text();
 };
 
-export const chatWithOwnData = async (prompt: string) => {
+export const chatWithOwnData = async (prompt: string, chatHistory? : Content[]) => {
   // const response = fetch("https://api.example.com/data").then((res) =>
   //   res.json()
   // );
@@ -86,13 +86,14 @@ export const chatWithOwnData = async (prompt: string) => {
         parts: [
           {
             text:
-              "Answer the question using the text below. If you cannot answer, you must answer ขออภัยค่ะ ไม่พบข้อมูลดังกล่าว \nQuestion: " +
+              "You are the librarian who guides people who use the library. Answer the question using the text below. If you cannot answer, you must answer ขออภัยค่ะ ไม่พบข้อมูลดังกล่าว \nQuestion: " +
               prompt +
               "\nText: " +
               information,
           },
         ],
       },
+      ...(chatHistory ?? [])
     ],
   });
 

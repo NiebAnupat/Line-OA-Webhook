@@ -1,0 +1,125 @@
+Thai RichMenu---------------------------------------------
+{
+  "size": {
+    "width": 2500,
+    "height": 843
+  },
+  "selected": true,
+  "name": "RichMenu-TH",
+  "chatBarText": "เมนู",
+  "areas": [
+    {
+      "bounds": {
+        "x": 70,
+        "y": 121,
+        "width": 642,
+        "height": 602
+      },
+      "action": {
+        "type": "message",
+        "text": "รายชื่อหนังสือ"
+      }
+    },
+    {
+      "bounds": {
+        "x": 812,
+        "y": 122,
+        "width": 642,
+        "height": 602
+      },
+      "action": {
+        "type": "message",
+        "text": "กฎเกณฑ์"
+      }
+    },
+    {
+      "bounds": {
+        "x": 1549,
+        "y": 121,
+        "width": 642,
+        "height": 602
+      },
+      "action": {
+        "type": "message",
+        "text": "คุณคือใคร"
+      }
+    },
+    {
+      "bounds": {
+        "x": 2260,
+        "y": 0,
+        "width": 240,
+        "height": 843
+      },
+      "action": {
+        "type": "richmenuswitch",
+        "richMenuAliasId": "richmenu-en",
+        "data": "richmenu-en"
+      }
+    }
+  ]
+}
+---------------------------------------------
+
+English RichMenu---------------------------------------------
+{
+  "size": {
+    "width": 2500,
+    "height": 843
+  },
+  "selected": true,
+  "name": "RichMenu-EN",
+  "chatBarText": "Menu",
+  "areas": [
+    {
+      "bounds": {
+        "x": 70,
+        "y": 121,
+        "width": 642,
+        "height": 602
+      },
+      "action": {
+        "type": "message",
+        "text": "List of book"
+      }
+    },
+    {
+      "bounds": {
+        "x": 812,
+        "y": 122,
+        "width": 642,
+        "height": 602
+      },
+      "action": {
+        "type": "message",
+        "text": "Rules"
+      }
+    },
+    {
+      "bounds": {
+        "x": 1549,
+        "y": 121,
+        "width": 642,
+        "height": 602
+      },
+      "action": {
+        "type": "message",
+        "text": "Who are you?"
+      }
+    },
+    {
+      "bounds": {
+        "x": 2260,
+        "y": 0,
+        "width": 240,
+        "height": 843
+      },
+      "action": {
+        "type": "richmenuswitch",
+        "richMenuAliasId": "richmenu-th",
+        "data": "richmenu-th"
+      }
+    }
+  ]
+}
+---------------------------------------------

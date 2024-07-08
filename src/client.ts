@@ -94,7 +94,7 @@ export class Client {
         {
           type: "template",
           altText: "this is a confirm template",
-          template: confirm
+          template: confirm,
         },
       ],
     });
@@ -115,6 +115,19 @@ export class Client {
           type: "flex",
           altText: "This is a Flex Message",
           contents: flexContainer,
+        },
+      ],
+    });
+  }
+
+  public carousel(carousel: line.TemplateCarousel) {
+    lineClient.replyMessage({
+      replyToken: this.replyToken,
+      messages: [
+        {
+          type: "template",
+          altText: "this is a carousel template",
+          template: carousel,
         },
       ],
     });
